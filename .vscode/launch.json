@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Hulamin Dashboard (WPF)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Hulamin.Dashboard/bin/Debug/net10.0-windows/Hulamin.Dashboard.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Hulamin.Dashboard",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    }
+  ]
+}

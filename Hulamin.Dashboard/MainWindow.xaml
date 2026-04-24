@@ -1,0 +1,32 @@
+﻿<Window x:Class="Hulamin.Dashboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="Hulamin Machines Analytics" Height="720" Width="1200">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Machine:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="MachineDropdown"
+                      Width="180"
+                      Margin="10"
+                      DisplayMemberPath="machine_name"
+                      SelectedValuePath="machine_id"/>
+
+            <TextBlock Text="Start Date:" VerticalAlignment="Center"/>
+            <DatePicker x:Name="StartDate" Margin="10"/>
+
+            <TextBlock Text="End Date:" VerticalAlignment="Center"/>
+            <DatePicker x:Name="EndDate" Margin="10"/>
+
+            <Button Content="Load Report" Width="120" Click="LoadReport_Click"/>
+        </StackPanel>
+
+        <wv2:WebView2 x:Name="Browser" Grid.Row="1"/>
+    </Grid>
+</Window>
