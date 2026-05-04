@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YDNxI98Qnz0=",
+  "dgSpecHash": "qza7A6uoVLA=",
   "success": true,
   "projectFilePath": "C:\\Users\\MTC-ADM\\Documents\\GitHub\\hulamin-Machines-Analytics-2\\hulamin.api\\Hulamin.API.csproj",
   "expectedPackageFiles": [
@@ -9,9 +9,39 @@
     "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.4\\microsoft.entityframeworkcore.abstractions.10.0.4.nupkg.sha512",
     "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.4\\microsoft.entityframeworkcore.analyzers.10.0.4.nupkg.sha512",
     "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.4\\microsoft.entityframeworkcore.relational.10.0.4.nupkg.sha512",
+    "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.identity.client\\4.83.3\\microsoft.identity.client.4.83.3.nupkg.sha512",
+    "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.14.0\\microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
     "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.powerbi.api\\3.20.1\\microsoft.powerbi.api.3.20.1.nupkg.sha512",
+    "C:\\Users\\MTC-ADM\\.nuget\\packages\\microsoft.rest.clientruntime\\2.3.23\\microsoft.rest.clientruntime.2.3.23.nupkg.sha512",
+    "C:\\Users\\MTC-ADM\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\MTC-ADM\\.nuget\\packages\\npgsql\\10.0.2\\npgsql.10.0.2.nupkg.sha512",
     "C:\\Users\\MTC-ADM\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\10.0.1\\npgsql.entityframeworkcore.postgresql.10.0.1.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'Microsoft.Rest.ClientRuntime' 2.3.23 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-whph-446h-6m9v",
+      "projectPath": "C:\\Users\\MTC-ADM\\Documents\\GitHub\\hulamin-Machines-Analytics-2\\hulamin.api\\Hulamin.API.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\MTC-ADM\\Documents\\GitHub\\hulamin-Machines-Analytics-2\\hulamin.api\\Hulamin.API.csproj",
+      "libraryId": "Microsoft.Rest.ClientRuntime",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json' 11.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "C:\\Users\\MTC-ADM\\Documents\\GitHub\\hulamin-Machines-Analytics-2\\hulamin.api\\Hulamin.API.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\MTC-ADM\\Documents\\GitHub\\hulamin-Machines-Analytics-2\\hulamin.api\\Hulamin.API.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

@@ -11,6 +11,7 @@ namespace Hulamin.Dashboard
     public partial class MainWindow : Window
     {
         private readonly HttpClient _client = new HttpClient();
+        private bool _pageReady = false;
 
         public MainWindow()
         {
@@ -22,6 +23,18 @@ namespace Hulamin.Dashboard
         private async void InitBrowser()
         {
             await Browser.EnsureCoreWebView2Async();
+
+            Browser.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
+
+            string path = System.IO.Path.Combine(
+                Environment.CurrentDirectory, "powerbi.html");
+
+            Browser.CoreWebView2.Navigate(new Uri(path).AbsoluteUri);
+        }
+
+        private void CoreWebView2_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            _pageReady = true;
         }
 
         private async void LoadMachines()
@@ -36,46 +49,26 @@ namespace Hulamin.Dashboard
 
         private async void LoadReport_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (!_pageReady)
             {
-                if (MachineDropdown.SelectedValue == null ||
-                    StartDate.SelectedDate == null ||
-                    EndDate.SelectedDate == null)
-                {
-                    MessageBox.Show("Select machine and dates");
-                    return;
-                }
-
-                string machineId = MachineDropdown.SelectedValue.ToString();
-
-                string startFormatted = StartDate.SelectedDate.Value.ToString("yyyy-MM-ddT00:00:00");
-                string endFormatted   = EndDate.SelectedDate.Value.ToString("yyyy-MM-ddT23:59:59");
-
-                // OPTIONAL API call (your backend)
-                string apiUrl =
-                    $"http://localhost:5287/api/production/waterfall?machineId={machineId}&startDate={StartDate.SelectedDate.Value:yyyy-MM-dd}&endDate={EndDate.SelectedDate.Value:yyyy-MM-dd}";
-
-                await _client.GetStringAsync(apiUrl);
-
-                // ✅ FIXED Power BI filter (NO demo mode, correct encoding)
-                string filter =
-                    $"public production/machine_id eq '{machineId}' " +
-                    $"and public production/date ge {startFormatted} " +
-                    $"and public production/date le {endFormatted}";
-
-                string encodedFilter = Uri.EscapeDataString(filter);
-
-                string powerBiUrl =
-                    $"https://app.powerbi.com/reportEmbed?reportId=ddcfcb63-79e7-47d2-9a9f-30d6302519b9" +
-                    $"&autoAuth=true" +
-                    $"&filter={encodedFilter}";
-
-                Browser.CoreWebView2.Navigate(powerBiUrl);
+                MessageBox.Show("Browser not ready yet");
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+            string machineId = MachineDropdown.SelectedValue.ToString();
+            string start = StartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+            string end = EndDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+
+            var token = await _client.GetFromJsonAsync<EmbedTokenDto>(
+                "http://localhost:5287/api/powerbi/embed-token");
+
+            await Browser.CoreWebView2.ExecuteScriptAsync(
+                $"loadReport('{token.embedUrl}', '{token.accessToken}', '{token.reportId}')");
+
+            await Task.Delay(2000);
+
+            await Browser.CoreWebView2.ExecuteScriptAsync(
+                $"applyFilters('{machineId}', '{start}', '{end}')");
         }
     }
 
@@ -83,5 +76,12 @@ namespace Hulamin.Dashboard
     {
         public string machine_id { get; set; }
         public string machine_name { get; set; }
+    }
+
+    public class EmbedTokenDto
+    {
+        public string accessToken { get; set; }
+        public string embedUrl { get; set; }
+        public string reportId { get; set; }
     }
 }

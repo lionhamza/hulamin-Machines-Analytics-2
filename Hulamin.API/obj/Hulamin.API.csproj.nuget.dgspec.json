@@ -48,6 +48,18 @@
               "target": "Package",
               "version": "[10.0.3, )"
             },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[4.83.3, )"
+            },
+            "Microsoft.PowerBI.Api": {
+              "target": "Package",
+              "version": "[3.20.1, )"
+            },
+            "Microsoft.Rest.ClientRuntime": {
+              "target": "Package",
+              "version": "[2.3.23, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[10.0.1, )"

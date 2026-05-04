@@ -49,3 +49,4 @@ C:\Users\MTC-ADM\Documents\GitHub\hulamin-Machines-Analytics-2\Hulamin.Dashboard
 C:\Users\MTC-ADM\Documents\GitHub\hulamin-Machines-Analytics-2\Hulamin.Dashboard\obj\Debug\net10.0-windows\Hulamin.Dashboard.pdb
 C:\Users\MTC-ADM\Documents\GitHub\hulamin-Machines-Analytics-2\Hulamin.Dashboard\obj\Debug\net10.0-windows\Hulamin.Dashboard.genruntimeconfig.cache
 C:\Users\MTC-ADM\Documents\GitHub\hulamin-Machines-Analytics-2\Hulamin.Dashboard\obj\Debug\net10.0-windows\ref\Hulamin.Dashboard.dll
+C:\Users\MTC-ADM\Documents\GitHub\hulamin-Machines-Analytics-2\hulamin.dashboard\obj\Debug\net10.0-windows\Hulamin.Dashboard.sourcelink.json

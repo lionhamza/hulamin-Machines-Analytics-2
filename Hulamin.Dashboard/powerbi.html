@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.23.1/dist/powerbi.min.js"></script>
+    <style>
+        html, body, #reportContainer {
+            margin:0; padding:0; height:100%; width:100%;
+        }
+    </style>
+</head>
+<body>
+<div id="reportContainer"></div>
+
+<script>
+let report;
+
+async function loadReport(embedUrl, accessToken, reportId) {
+    const models = window['powerbi-client'].models;
+
+    const container = document.getElementById('reportContainer');
+    powerbi.reset(container);
+
+    const config = {
+        type: 'report',
+        tokenType: models.TokenType.Embed,
+        accessToken: accessToken,
+        embedUrl: embedUrl,
+        id: reportId
+    };
+
+    report = powerbi.embed(container, config);
+}
+
+async function applyFilters(machineId, start, end) {
+    const models = window['powerbi-client'].models;
+
+    // ✅ MACHINE FILTER — correct table
+    const machineFilter = {
+        $schema: "http://powerbi.com/product/schema#basic",
+        target: { table: "production", column: "machine_id" },
+        operator: "In",
+        values: [machineId]
+    };
+
+    // ✅ DATE FILTER — correct table
+    const dateFilter = {
+        $schema: "http://powerbi.com/product/schema#basic",
+        target: { table: "production", column: "date" },
+        operator: "Between",
+        values: [
+            start + "T00:00:00",
+            end + "T23:59:59"
+        ]
+    };
+
+    await report.setFilters([machineFilter, dateFilter]);
+}
+</script>
+</body>
+</html>
